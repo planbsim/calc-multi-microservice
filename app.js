@@ -9,9 +9,9 @@ app.use(bodyParser.json());
 
 app.post('/', (req, res) => {
     console.log('Request Body:\n', JSON.stringify(req.body, null, 4));
-    const muliplier = req.body.muliplier;
+    const multiplier = req.body.multiplier;
     const multiplicand = req.body.multiplicand;
-    const product = muliplier * multiplicand;
+    const product = multiplier * multiplicand;
     res.header('Content-Type', 'application/json');
     res.send(JSON.stringify({ result: product }));
   });
