@@ -1,0 +1,28 @@
+# This template file will have its environment variables expanded
+# and the .template extension removed by the bash-template Wercker step.
+# See wercker.yml.
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: multi
+  labels:
+    commit: ${WERCKER_GIT_COMMIT}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multi
+  template:
+    metadata:
+      labels:
+        app: multi
+        commit: ${WERCKER_GIT_COMMIT}
+    spec:
+      containers:
+      - name: multi-nodejs
+        image: ${GCR_TAG}:${WERCKER_GIT_COMMIT}
+        ports:
+        - name: multi-nodejs
+          containerPort: 8080
+          protocol: TCP
